@@ -1,5 +1,4 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { FlatList, StyleSheet } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTiles from "../components/CategoryGridTiles";
 /****************************************************************/
@@ -19,10 +18,10 @@ export default CategoriesScreen = ({ navigation }) => {
 
   return (
     <FlatList
-      style={styles.listContainer}
       data={CATEGORIES}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
+      style={styles.listContainer}
       numColumns={2}
     />
   );

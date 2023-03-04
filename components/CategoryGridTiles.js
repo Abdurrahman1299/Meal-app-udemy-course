@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
-import React from "react";
 
 export default function CategoryGridTiles({ item, onPress }) {
   return (
@@ -9,6 +8,7 @@ export default function CategoryGridTiles({ item, onPress }) {
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.pressedButton : null,
+          // the condition of pressed or not is embedded inside the pressable element
         ]}
         onPress={onPress}
       >

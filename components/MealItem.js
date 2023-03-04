@@ -6,13 +6,22 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+
+import { useNavigation } from "@react-navigation/native";
 
 export default function MealItem({ item }) {
+  // the navigation object though i cannot access that object as mealitem.js is not a screen
+  const navigation = useNavigation();
+
+  function pressHandler() {
+    navigation.navigate("MealDetailScreen", { item: item });
+  }
+
   return (
     <View style={styles.container}>
       <Pressable
         style={({ pressed }) => (pressed ? styles.pressedButton : null)}
+        onPress={pressHandler}
       >
         <View style={styles.toBorderApply}>
           <View>
