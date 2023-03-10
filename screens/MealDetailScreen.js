@@ -1,11 +1,25 @@
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import { useLayoutEffect } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import IconButton from "../components/IconButton";
 
-export default function MealDetailScreen({ route }) {
+export default function MealDetailScreen({ route, navigation }) {
   // to be able to use the params passed from the parent screen, it must be called from the route object
   const item = route.params.item;
   let iter1 = 1;
   let iter2 = 1;
+
+  function onIconPress() {
+    console.log("noway");
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton name="star" color="brown" size={24} onPress={onIconPress} />
+      ),
+    });
+  }, [navigation, onIconPress]);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -18,8 +32,8 @@ export default function MealDetailScreen({ route }) {
 
         <Text style={styles.text}>Ingredients</Text>
         {item.ingredients.map((ingredient) => (
-          <View>
-            <Text key={ingredient} style={styles.textList}>
+          <View key={ingredient}>
+            <Text style={styles.textList}>
               {iter1++} - {ingredient}
             </Text>
           </View>
@@ -27,8 +41,8 @@ export default function MealDetailScreen({ route }) {
 
         <Text style={styles.text}>Steps</Text>
         {item.steps.map((step) => (
-          <View>
-            <Text key={step} style={styles.textList}>
+          <View key={step}>
+            <Text style={styles.textList}>
               {iter2++} - {step}
             </Text>
           </View>
